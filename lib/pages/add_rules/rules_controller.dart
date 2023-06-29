@@ -44,7 +44,6 @@ class RulesController extends GetxController {
     }
 
     ignoreSystemApps.value = settings.ignoreSystemApps;
-
     limitController.text = settings.presetLimit.toString();
   }
 
@@ -58,6 +57,7 @@ class RulesController extends GetxController {
     spamProbabilityController.dispose();
     adProbabilityController.dispose();
     limitController.dispose();
+    
     super.onClose();
   }
 
@@ -65,6 +65,7 @@ class RulesController extends GetxController {
     if (value != null && value.isEmpty) {
       return 'Please this field must be filled';
     }
+    
     return null;
   }
 
@@ -72,6 +73,7 @@ class RulesController extends GetxController {
     if (value != null && value.isEmpty) {
       return 'Please this field must be filled';
     }
+    
     return null;
   }
 
@@ -134,12 +136,13 @@ class RulesController extends GetxController {
       settings.presetAdProbability = adProbabilityController.text.isEmpty
           ? null
           : double.tryParse(adProbabilityController.text);
-
+      
       settings.presetSpamProbability = spamProbabilityController.text.isEmpty
           ? null
           : double.tryParse(spamProbabilityController.text);
-
+      
       int? limitVal = int.tryParse(limitController.text);
+      
       if (limitController.text.isNotEmpty && limitVal != null) {
         settings.presetLimit = limitVal;
       }
